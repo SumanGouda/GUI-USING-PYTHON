@@ -1,31 +1,30 @@
 from tkinter import *
-from PIL import Image, ImageTk
 
 root = Tk()
 root.configure(bg="#000000")
 root.title("Simple Calculator")
 
 e = Entry(root, width=50, borderwidth=5)
-e.grid(row=0, column=1,columnspan=3,padx=10,pady=10)
+e.grid(row=0, column=1,columnspan=10,padx=10,pady=10)
 
-def button_add():
+def button_click():
     return
 
 # Define Button
 
-button_1 = Button(root, text="1", padx=40, pady=20, command=button_add,bg="#1BF90F")
-button_2 = Button(root, text="2", padx=40, pady=20, command=button_add,bg="#1BF90F") 
-button_3 = Button(root, text="3", padx=40, pady=20, command=button_add,bg="#1BF90F") 
-button_4 = Button(root, text="4", padx=40, pady=20, command=button_add,bg="#1BF90F") 
-button_5 = Button(root, text="5", padx=40, pady=20, command=button_add,bg="#1BF90F") 
-button_6 = Button(root, text="6", padx=40, pady=20, command=button_add,bg="#1BF90F") 
-button_7 = Button(root, text="7", padx=40, pady=20, command=button_add,bg="#1BF90F") 
-button_8 = Button(root, text="8", padx=40, pady=20, command=button_add,bg="#1BF90F")   
-button_9 = Button(root, text="9", padx=40, pady=20, command=button_add,bg="#1BF90F")     
-button_0 = Button(root, text="0", padx=40, pady=20, command=button_add,bg="#1BF90F")  
-button_sum = Button(root, text="+", padx=39, pady=19, command=button_add, bg="#1BF90F")
-button_equal = Button(root, text="=", padx=39, pady=20, command=button_add, bg="#1BF90F")
-button_clear = Button(root, text="Clear", padx=30, pady=20, command=button_add, bg="#1BF90F")
+button_1 = Button(root, text="1", padx=40, pady=20, command=lambda: button_click(1),bg="#1BF90F")
+button_2 = Button(root, text="2", padx=40, pady=20, command=lambda: button_click(2),bg="#1BF90F") 
+button_3 = Button(root, text="3", padx=40, pady=20, command=lambda: button_click(3),bg="#1BF90F") 
+button_4 = Button(root, text="4", padx=40, pady=20, command=lambda: button_click(4),bg="#1BF90F") 
+button_5 = Button(root, text="5", padx=40, pady=20, command=lambda: button_click(5),bg="#1BF90F") 
+button_6 = Button(root, text="6", padx=40, pady=20, command=lambda: button_click,bg="#1BF90F") 
+button_7 = Button(root, text="7", padx=40, pady=20, command=lambda: button_click,bg="#1BF90F") 
+button_8 = Button(root, text="8", padx=40, pady=20, command=lambda: button_click,bg="#1BF90F")   
+button_9 = Button(root, text="9", padx=40, pady=20, command=lambda: button_click,bg="#1BF90F")     
+button_0 = Button(root, text="0", padx=40, pady=20, command=lambda: button_click,bg="#1BF90F")  
+button_sum = Button(root, text="+", padx=39, pady=19, command=lambda: button_click, bg="#1BF90F")
+button_equal = Button(root, text="=", padx=39, pady=20, command=lambda: button_click, bg="#1BF90F")
+button_clear = Button(root, text="Clear", padx=30, pady=20, command=button_click, bg="#1BF90F")
 # Put Button On The Screen 
 
 button_1.grid(row=3,column=1)
