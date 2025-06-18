@@ -1,50 +1,64 @@
-from tkinter import *
+import tkinter as tk
 
-root = Tk()
-root.configure(bg="#000000")
-root.title("Simple Calculator")
+# Create main window
+root = tk.Tk()
+root.title("Calculator")
+root.geometry("300x400")
+root.configure(bg="#2D2929")
 
-e = Entry(root, width=50, borderwidth=5)
-e.grid(row=0, column=1,columnspan=10,padx=10,pady=10)
+# Create Entry widget for display
+display = tk.Entry(root,
+            font=("Arial", 24),
+            borderwidth=3,
+            relief="ridge",
+            justify="right",
+            fg = 'white',
+            bg="#201E1E",
+            insertbackground="white"
+        )
+display.pack(padx=10, pady=20, fill='both')
 
-def button_click():
-    return
+btns_frame = tk.Frame(root, bg="#201E1E")
+btns_frame.pack()
 
-# Define Button
+# Button style
+btn_config = {
+    "font": ("Arial", 18),
+    "bg": "#333333",  # dark gray buttons
+    "fg": "white",
+    "width": 5,
+    "height": 2,
+    "bd": 0,
+    "highlightthickness": 0
+}
 
-button_1 = Button(root, text="1", padx=40, pady=20, command=lambda: button_click(1),bg="#1BF90F")
-button_2 = Button(root, text="2", padx=40, pady=20, command=lambda: button_click(2),bg="#1BF90F") 
-button_3 = Button(root, text="3", padx=40, pady=20, command=lambda: button_click(3),bg="#1BF90F") 
-button_4 = Button(root, text="4", padx=40, pady=20, command=lambda: button_click(4),bg="#1BF90F") 
-button_5 = Button(root, text="5", padx=40, pady=20, command=lambda: button_click(5),bg="#1BF90F") 
-button_6 = Button(root, text="6", padx=40, pady=20, command=lambda: button_click,bg="#1BF90F") 
-button_7 = Button(root, text="7", padx=40, pady=20, command=lambda: button_click,bg="#1BF90F") 
-button_8 = Button(root, text="8", padx=40, pady=20, command=lambda: button_click,bg="#1BF90F")   
-button_9 = Button(root, text="9", padx=40, pady=20, command=lambda: button_click,bg="#1BF90F")     
-button_0 = Button(root, text="0", padx=40, pady=20, command=lambda: button_click,bg="#1BF90F")  
-button_sum = Button(root, text="+", padx=39, pady=19, command=lambda: button_click, bg="#1BF90F")
-button_equal = Button(root, text="=", padx=39, pady=20, command=lambda: button_click, bg="#1BF90F")
-button_clear = Button(root, text="Clear", padx=30, pady=20, command=button_click, bg="#1BF90F")
-# Put Button On The Screen 
+# Button layout
+buttons = [
+    ['7', '8', '9', '/'],
+    ['4', '5', '6', '*'],
+    ['1', '2', '3', '-'],
+    ['C', '0', '=', '+']
+]
+# Create buttons in grid
+def on_button_click(symbol):
+    if symbol == "C":
+        display.delete(0, tk.END)  # Clear display
+    elif symbol == "=":
+        try:
+            result = eval(display.get())  # Evaluate expression
+            display.delete(0, tk.END)
+            display.insert(0, str(result))  # Show result
+        except Exception:
+            display.delete(0, tk.END)
+            display.insert(0, "Error")
+    else:
+        display.insert(tk.END, symbol)  # Add symbol to display
 
-button_1.grid(row=3,column=1)
-button_2.grid(row=3,column=2)
-button_3.grid(row=3,column=3)
+for row_index, row in enumerate(buttons):
+    for col_index, symbol in enumerate(row):
+        btn = tk.Button(btns_frame, text=symbol, command=lambda s=symbol: on_button_click(s), **btn_config)
+        btn.grid(row=row_index, column=col_index, padx=5, pady=5)
 
-button_4.grid(row=2,column=1)
-button_5.grid(row=2,column=2)
-button_6.grid(row=2,column=3)
 
-button_7.grid(row=1,column=1)
-button_8.grid(row=1,column=2)
-button_9.grid(row=1,column=3)
-
-button_0.grid(row=4,column=2)
-button_sum.grid(row=1,column=4)
-button_clear.grid(row=4,column=1)
-button_equal.grid(row=4,column=3)
-
+# Run the app
 root.mainloop()
-
-
-    
